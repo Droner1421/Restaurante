@@ -1,0 +1,51 @@
+// Interfaces para consumir la API Restaurante-Pedidos
+
+export interface Restaurante {
+  id: number;
+  nombre: string;
+  direccion: string;
+  telefono: string;
+  // Otros campos relevantes
+}
+
+export interface Platillo {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  categoria: string;
+  disponible: boolean;
+  restauranteId: number;
+  // Otros campos relevantes
+}
+
+export interface Pedido {
+  id: number;
+  fecha: string; // ISO 8601
+  mesa: number;
+  metodo_pago: string;
+  total: number;
+  estado: string;
+  restauranteId: number;
+  platillos: PedidoPlatillo[];
+  // Otros campos relevantes
+}
+
+export interface PedidoPlatillo {
+  platilloId: number;
+  cantidad: number;
+  // Otros campos relevantes
+}
+
+// Respuestas de endpoints
+export type RestaurantesResponse = Restaurante[];
+export type PlatillosDisponiblesResponse = Platillo[];
+export type PlatillosPorCategoriaResponse = Platillo[];
+export type PedidosPorFechaResponse = Pedido[];
+export type PedidosPorMetodoPagoResponse = Pedido[];
+export type PedidosPorMesaResponse = Pedido[];
+export type PedidosPendientesResponse = Pedido[];
+export type PlatillosConPedidosResponse = Array<{
+  platillo: Platillo;
+  pedidos: Pedido[];
+}>;

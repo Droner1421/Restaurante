@@ -1,0 +1,235 @@
+// CRUD Endpoints para Restaurante-Pedidos API
+// Base URL: http://192.168.100.8:3000/api/restaurante-pedidos
+
+// ============================================
+// RESTAURANTES - CRUD
+// ============================================
+
+// CREAR RESTAURANTE
+POST /api/restaurante-pedidos/restaurantes
+Content-Type: application/json
+
+{
+  "nombre": "Mi Restaurante",
+  "direccion": "Calle Principal 123",
+  "telefono": "555-1234"
+}
+
+Response (201):
+{
+  "id": 1,
+  "nombre": "Mi Restaurante",
+  "direccion": "Calle Principal 123",
+  "telefono": "555-1234"
+}
+
+
+// ACTUALIZAR RESTAURANTE
+
+LOG  Error al actualizar restaurante: [AxiosError: Request failed with status code 404]
+PATCH /api/restaurante-pedidos/restaurantes/1
+Content-Type: application/json
+
+{
+  "nombre": "Mi Restaurante Mejorado",
+  "direccion": "Calle Principal 456",
+  "telefono": "555-5678"
+}
+
+Response (200):
+{
+  "id": 1,
+  "nombre": "Mi Restaurante Mejorado",
+  "direccion": "Calle Principal 456",
+  "telefono": "555-5678"
+}
+
+
+// ELIMINAR RESTAURANTE
+DELETE /api/restaurante-pedidos/restaurantes/1
+
+Response (200):
+{
+  "message": "Restaurante eliminado exitosamente"
+}
+
+
+// ============================================
+// PLATILLOS - CRUD
+// ============================================
+
+// CREAR PLATILLO
+POST /api/restaurante-pedidos/platillos
+Content-Type: application/json
+
+{
+  "nombre": "Pizza Margherita",
+  "descripcion": "Pizza clásica con tomate, mozzarella y albahaca",
+  "precio": 12.99,
+  "categoria": "Pizzas",
+  "disponible": true,
+  "restauranteId": 1
+}
+
+Response (201):
+{
+  "id": 1,
+  "nombre": "Pizza Margherita",
+  "descripcion": "Pizza clásica con tomate, mozzarella y albahaca",
+  "precio": 12.99,
+  "categoria": "Pizzas",
+  "disponible": true,
+  "restauranteId": 1
+}
+
+
+// ACTUALIZAR PLATILLO
+PATCH /api/restaurante-pedidos/platillos/1
+Content-Type: application/json
+
+{
+  "nombre": "Pizza Margherita Especial",
+  "precio": 14.99,
+  "disponible": true
+}
+
+Response (200):
+{
+  "id": 1,
+  "nombre": "Pizza Margherita Especial",
+  "descripcion": "Pizza clásica con tomate, mozzarella y albahaca",
+  "precio": 14.99,
+  "categoria": "Pizzas",
+  "disponible": true,
+  "restauranteId": 1
+}
+
+
+// ELIMINAR PLATILLO
+DELETE /api/restaurante-pedidos/platillos/1
+
+Response (200):
+{
+  "message": "Platillo eliminado exitosamente"
+}
+
+
+// ============================================
+// PEDIDOS - CRUD
+// ============================================
+
+// CREAR PEDIDO
+POST /api/restaurante-pedidos/pedidos
+Content-Type: application/json
+
+{
+  "fecha": "2025-12-04T14:30:00",
+  "mesa": 5,
+  "metodo_pago": "Efectivo",
+  "total": 45.98,
+  "estado": "Pendiente",
+  "restauranteId": 1,
+  "platillos": [
+    {
+      "platilloId": 1,
+      "cantidad": 2
+    },
+    {
+      "platilloId": 3,
+      "cantidad": 1
+    }
+  ]
+}
+
+Response (201):
+{
+  "id": 1,
+  "fecha": "2025-12-04T14:30:00",
+  "mesa": 5,
+  "metodo_pago": "Efectivo",
+  "total": 45.98,
+  "estado": "Pendiente",
+  "restauranteId": 1,
+  "platillos": [
+    {
+      "platilloId": 1,
+      "cantidad": 2
+    },
+    {
+      "platilloId": 3,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+// ACTUALIZAR PEDIDO
+PATCH /api/restaurante-pedidos/pedidos/1
+Content-Type: application/json
+
+{
+  "estado": "Completado",
+  "metodo_pago": "Tarjeta",
+  "total": 50.00
+}
+
+Response (200):
+{
+  "id": 1,
+  "fecha": "2025-12-04T14:30:00",
+  "mesa": 5,
+  "metodo_pago": "Tarjeta",
+  "total": 50.00,
+  "estado": "Completado",
+  "restauranteId": 1
+}
+
+
+// ELIMINAR PEDIDO
+DELETE /api/restaurante-pedidos/pedidos/1
+
+Response (200):
+{
+  "message": "Pedido eliminado exitosamente"
+}
+
+
+// ============================================
+// REFERENCIAS RÁPIDAS
+// ============================================
+
+Base URL: http://192.168.100.8:3000
+
+Métodos HTTP:
+- POST: Crear nuevo recurso
+- PATCH: Actualizar recurso existente
+- DELETE: Eliminar recurso
+
+Rutas principales:
+- Restaurantes: /api/restaurante-pedidos/restaurantes
+- Platillos: /api/restaurante-pedidos/platillos
+- Pedidos: /api/restaurante-pedidos/pedidos
+
+Campos requeridos por entidad:
+
+RESTAURANTE:
+  - nombre (string, requerido)
+  - direccion (string, requerido)
+  - telefono (string, requerido)
+
+PLATILLO:
+  - nombre (string, requerido)
+  - descripcion (string, requerido)
+  - precio (number, requerido)
+  - categoria (string, requerido)
+  - disponible (boolean, requerido)
+  - restauranteId (number, requerido)
+
+PEDIDO:
+  - fecha (string ISO 8601, requerido)
+  - mesa (number, requerido)
+  - metodo_pago (string, requerido)
+  - total (number, requerido)
+  - estado (string, requerido)
+  - restauranteId (number, requerido)
+  - platillos (array de objetos con platilloId y cantidad)

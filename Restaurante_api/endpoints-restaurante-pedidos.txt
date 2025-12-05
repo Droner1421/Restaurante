@@ -1,0 +1,27 @@
+# Endpoints GET para Restaurante-Pedidos
+
+1. Listar restaurantes registrados:
+GET /api/restaurante-pedidos/restaurantes
+
+2. Consultar platillos disponibles:
+GET /api/restaurante-pedidos/platillos-disponibles
+
+3. Ver platillos por categoría:
+GET http://192.168.100.8:3000/api/restaurante-pedidos/platillos-categoria?categoria=Bebida
+
+4. Mostrar pedidos por fecha:
+GET http://192.168.100.8:3000/api/restaurante-pedidos/pedidos-fecha?fecha=2025-12-01
+
+5. Consultar pedidos por método de pago:
+GET http://192.168.100.8:3000/api/restaurante-pedidos/pedidos-metodo-pago?metodo_pago=Efectivo
+
+6. Consultar pedidos de una mesa específica:
+GET http://192.168.100.8:3000/api/restaurante-pedidos/pedidos-mesa?mesa=22
+
+7. Ver pedidos pendientes:
+GET http://192.168.100.8:3000/api/restaurante-pedidos/pedidos-pendientes
+
+8. Mostrar platillos junto con pedidos:
+GET /api/restaurante-pedidos/platillos-con-pedidos
+
+
